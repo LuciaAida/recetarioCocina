@@ -1,18 +1,26 @@
-import titulo from './assets/title.png'
+import Inicio from './Inicio.jsx'
+import Recetas from './Recetas.jsx'
+import NuevaReceta from './NuevaReceta.jsx'
 import './App.css'
+import { useState } from 'react'
 
 function App() {
+  const [mostrarRecetas, setMostrarRecetas] = useState(false);
+  const [mostrarAnyadirRecetas, setMostrarAnyadirRecetas] = useState(false);
+
   return (
     <>
-      <div>
-        <a href="src/add.jsx" target="_blank">
-          <img src={titulo} className="logo" alt="Titulo logo" />
-        </a>
-      </div>
-      <h1>Mi recetario de cocina</h1>
-      <p className="read-the-docs">
-        © 2025 Lucía Pérez Aída. Todos los derechos reservados.
-      </p>
+      { !mostrarRecetas && !mostrarAnyadirRecetas && (
+        <Inicio verRecetas={() => setMostrarRecetas(true)} />
+      )}
+
+      { mostrarRecetas && !mostrarAnyadirRecetas && (
+        <Recetas anyadirReceta={() => setMostrarAnyadirRecetas(true)} />
+      )}
+
+      { mostrarAnyadirRecetas && (
+        <NuevaReceta guardar={() => setMostrarAnyadirRecetas(false)} />
+      )}
     </>
   )
 }
