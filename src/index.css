@@ -61,6 +61,23 @@ button:focus-visible {
   border-radius: 5px;
 }
 
+input, textarea {
+  background-color: #ffffff; 
+  color: #213547;           
+  border: 1px solid #ccc;   
+  border-radius: 5px;     
+  padding: 8px;         
+  font-size: 1em;
+  width: 100%;           
+  box-sizing: border-box;  
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #646cff; /* azul de tus links */
+  box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.3);
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {
