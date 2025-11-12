@@ -1,30 +1,23 @@
 import './index.css'
+import Receta from './Receta.jsx'
 
-function Receta({ receta }){
-    return(
-        <div className="thumbnail">
-            <h3>{receta.titulo}</h3>
-            <p>{receta.descripcion}</p>
-        </div>
-    )
-}
-
-function Recetas({ anyadirReceta }) {
-  const recetas = [
-    { id: 1, titulo: "Tortilla de patatas", descripcion: "Clásica tortilla española" },
-    { id: 2, titulo: "Ensalada César", descripcion: "Lechuga, pollo y aderezo César" },
-    { id: 3, titulo: "Brownie de chocolate", descripcion: "Postre delicioso y chocolatoso" }
-  ]
-
+function Recetas({ listaRecetas=[], irANueva }) {
+  
   return (
     <div>
         <h1>Lista de recetas</h1>
-        {recetas.map(receta =>
-            <Receta key={receta.id} receta={receta}/>
+        {listaRecetas.length == 0 ?(
+          <p>No hay recetas</p>
+        ):(
+        listaRecetas.map(receta =>
+            <Receta key={receta.id} listaRecetas={receta}/>
+        )
         )}
-        <button onClick={anyadirReceta} >Nueva receta</button>
+        <button onClick={irANueva} >Nueva receta</button>
     </div>
+    
   )
+  
 }
 
 export default Recetas

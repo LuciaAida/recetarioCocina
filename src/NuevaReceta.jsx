@@ -1,22 +1,29 @@
 import './index.css'
 import { useState } from 'react';
 
-function nuevaReceta(){
+function nuevaReceta({ guardarReceta, cancelar }){
     const [receta, setReceta] = useState({titulo:"", descripcion:""});
 
+    //nuevo objeto, copia lo anterior y lo reemplaza
+    const actualizarCampo = (campo, valor) => {
+        setReceta({ ...receta, [campo]: valor })
+    }
 
-//nuevo objeto, copia lo anterior y lo reemplaza
-function actualizarCampo( campo, valor ){
-    setReceta({
-        ...receta,
-        [campo]:valor
-    })
-}
+    function volverALista() {
+        setReceta({ titulo: "", descripcion: "" }); // limpia los campos
+        cancelar(); 
+    }
 
+    const handleGuardar = () =>{
+        const nueva = {id: Date.now(), ...receta}
+        guardarReceta(nueva)
+    }
 
     return(
         <div>
             <h1>Nueva receta</h1>
+            <file
+            />
             <h3>Título</h3>
             <input 
                 type="text"
@@ -28,7 +35,8 @@ function actualizarCampo( campo, valor ){
                 value={receta.descripcion}
                 onChange={(e) => actualizarCampo("descripcion", e.target.value)}/>
 
-            {/* <button onClick={guardarReceta}>Guardar receta</button> */}
+            <button onClick={handleGuardar}>Guardar receta</button>
+            <button onClick={volverALista}>Volver</button>
         </div>
     );
 }
