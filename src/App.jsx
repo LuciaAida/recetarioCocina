@@ -25,13 +25,13 @@ function App() {
   }
   return (
     <>
-    {mostrarInicio && <Inicio verRecetas={() => setMostrarInicio(false)} />}
+    {mostrarInicio && (<Inicio verRecetas={() => setMostrarInicio(false)} />)}
+      
+    {!mostrarInicio && !mostrarNueva &&(<Recetas listaRecetas={listaRecetas} irANueva={() => setMostrarNueva(true)} />)}
     
-    {!mostrarInicio &&  mostrarNueva ?
-      <NuevaReceta guardarReceta={guardarReceta} cancelar={() => setMostrarNueva(false)}/>
-      : <Recetas listaRecetas={listaRecetas} irANueva={() => setMostrarNueva(true)} />}
+     {mostrarNueva && (
+      <NuevaReceta guardarReceta={guardarReceta} cancelar={() => setMostrarNueva(false)}/>)}
     </>
-
   )
 }
 

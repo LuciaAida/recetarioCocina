@@ -3,6 +3,8 @@ import { useState } from 'react';
 
 function nuevaReceta({ guardarReceta, cancelar }){
     const [receta, setReceta] = useState({titulo:"", descripcion:""});
+    const [likeCont, setLikeCont] = useState(50)
+    const [botonAct, setBotonAct] = useState("none")
 
     //nuevo objeto, copia lo anterior y lo reemplaza
     const actualizarCampo = (campo, valor) => {
@@ -34,6 +36,7 @@ function nuevaReceta({ guardarReceta, cancelar }){
             <textarea 
                 value={receta.descripcion}
                 onChange={(e) => actualizarCampo("descripcion", e.target.value)}/>
+            
 
             <button onClick={handleGuardar}>Guardar receta</button>
             <button onClick={volverALista}>Volver</button>
